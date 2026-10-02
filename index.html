@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Blueprint Generator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="toolApp">
+
+  <header class="toolTopBar">
+    <h1 class="toolTitle">Blueprint Generator</h1>
+    <button id="btnUploadTop" class="toolAction">New Image</button>
+  </header>
+
+  <main class="toolView">
+
+    <!-- ============ IMAGE PICKER / PREVIEW ============ -->
+    <section id="canvasArea">
+      <div id="emptyState">
+        <input type="file" id="fileInput" accept="image/*" hidden>
+        <button id="btnChooseImage" class="bigAction">Upload Image</button>
+        <p class="hint">Tap to pick an image for analysis</p>
+      </div>
+
+      <div id="previewWrap" class="hidden">
+        <img id="previewImg" alt="Selected image">
+        <div id="fileMeta">—</div>
+      </div>
+    </section>
+
+    <!-- ============ CONTROLS ============ -->
+    <section id="controls">
+
+      <!-- AI SETUP -->
+      <div class="group">
+        <div class="groupTitle">AI Setup (OpenRouter)</div>
+
+        <div class="fieldRow">
+          <label for="openrouterKey">API Key</label>
+          <input type="password" id="openrouterKey" placeholder="sk-or-…" autocomplete="off" spellcheck="false">
+        </div>
+
+        <div class="fieldRow btnRow">
+          <button id="btnSaveKey" class="smallBtn primary">Save Key</button>
+          <button id="btnClearKey" class="smallBtn danger">Clear</button>
+          <button id="btnRefreshModels" class="smallBtn">Refresh Models</button>
+        </div>
+
+        <div class="fieldRow">
+          <label for="pricingFilter">Pricing</label>
+          <select id="pricingFilter">
+            <option value="all" selected>All</option>
+            <option value="free">Free only</option>
+            <option value="paid">Paid only</option>
+          </select>
+        </div>
+
+        <div class="fieldRow">
+          <label for="providerFilter">Provider</label>
+          <select id="providerFilter">
+            <option value="all" selected>All providers</option>
+          </select>
+        </div>
+
+        <div class="fieldRow">
+          <label for="modelList">Vision Model</label>
+          <select id="modelList">
+            <option value="">Tap Refresh Models</option>
+          </select>
+        </div>
+
+        <div class="fieldRow">
+          <label for="detailLevel">Analysis Detail</label>
+          <select id="detailLevel">
+            <option value="standard" selected>Standard</option>
+            <option value="high">High (longer, more precise)</option>
+            <option value="exhaustive">Exhaustive (very long)</option>
+          </select>
+        </div>
+
+        <div class="fieldRow">
+          <label>Model count</label>
+          <span id="modelCount" class="inlineValue">0</span>
+        </div>
+      </div>
+
+      <!-- ANALYSE -->
+      <div class="group">
+        <div class="groupTitle">Analysis</div>
+
+        <div class="fieldRow btnRow">
+          <button id="btnAnalyse" class="smallBtn primary bigWide">Analyse Image</button>
+        </div>
+
+        <div id="analyseStatus" class="statusLine hidden"></div>
+      </div>
+
+      <!-- OUTPUT -->
+      <div class="group">
+        <div class="groupTitle">Blueprint Output</div>
+
+        <div class="fieldRow">
+          <label for="projectName">Filename</label>
+          <input type="text" id="projectName" value="blueprint" placeholder="blueprint">
+        </div>
+
+        <div class="manifestWrap">
+          <pre id="manifestPreview">No blueprint yet. Upload an image, save a key, pick a model, then tap Analyse Image.</pre>
+        </div>
+
+        <div class="fieldRow btnRow">
+          <button id="btnCopyManifest" class="smallBtn">Copy</button>
+          <button id="btnExportTxt" class="smallBtn primary">Save as .txt</button>
+        </div>
+      </div>
+
+      <!-- RESET -->
+      <div class="group">
+        <div class="groupTitle">Reset</div>
+
+        <div class="fieldRow btnRow">
+          <button id="btnResetAll" class="smallBtn danger">Reset Everything</button>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+</div>
+
+<script src="blueprint.js"></script>
+</body>
+</html>
